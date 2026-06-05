@@ -13,7 +13,9 @@
   <!-- NAV -->
   <nav class="navbar">
     <div class="container nav-inner">
-      <a href="#" class="logo">Bearing<span>Tech</span></a>
+      <a href="#" class="logo">
+        <img src="images/logo.png" alt="BearingTech Logo" height="40">
+      </a>
       <button class="nav-toggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
       </button>
@@ -30,6 +32,9 @@
   <!-- HERO -->
   <header class="hero">
     <div class="hero-bg"></div>
+    <div class="hero-image">
+      <img src="images/slider-1.jpg" alt="BearingTech Industrial Equipment" />
+    </div>
     <div class="container">
       <div class="hero-content">
         <span class="hero-badge">SKF Authorised Supplier</span>
@@ -130,6 +135,19 @@
           <p>Right product, right application, longer life. We help you achieve maximum cost savings through proper bearing selection and technical support.</p>
         </div>
       </div>
+
+      <!-- BRANDS -->
+      <div class="brands-section">
+        <p class="brands-label">Trusted Brands We Supply</p>
+        <div class="brands-grid">
+          <img src="images/brand-SKF.jpg" alt="SKF Bearings" />
+          <img src="images/brand-NSK.jpg" alt="NSK Bearings" />
+          <img src="images/brand-NKE.jpg" alt="NKE Bearings" />
+          <img src="images/brand-FAG.jpg" alt="FAG Bearings" />
+          <img src="images/brand-INA.jpg" alt="INA Bearings" />
+          <img src="images/brand-FYH.jpg" alt="FYH Bearings" />
+        </div>
+      </div>
     </div>
   </section>
 
@@ -184,62 +202,35 @@
         <h2>Projects we've been involved in</h2>
         <p class="section-subtitle">From gearbox repairs to mobile crushing plant — we support industries across Australia.</p>
       </div>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <div class="gallery-icon">⚙️</div>
-          <span>Gearbox Repair</span>
+      <div class="gallery-carousel">
+        <div class="gallery-track">
+          <div class="gallery-slide">
+            <img src="images/slider-2.jpg" alt="BearingTech Project Gallery">
+            <div class="gallery-caption">Industrial Applications</div>
+          </div>
+          <div class="gallery-slide">
+            <img src="images/slider-3.jpg" alt="BearingTech Project Gallery">
+            <div class="gallery-caption">Heavy Machinery</div>
+          </div>
+          <div class="gallery-slide">
+            <img src="images/slider-5.jpg" alt="BearingTech Project Gallery">
+            <div class="gallery-caption">Mining Equipment</div>
+          </div>
+          <div class="gallery-slide">
+            <img src="images/slider-6.jpg" alt="BearingTech Project Gallery">
+            <div class="gallery-caption">Conveyor Systems</div>
+          </div>
+          <div class="gallery-slide">
+            <img src="images/slider-7.jpg" alt="BearingTech Project Gallery">
+            <div class="gallery-caption">Material Handling</div>
+          </div>
         </div>
-        <div class="gallery-item">
-          <div class="gallery-icon">🔧</div>
-          <span>Gearbox Re-assembly</span>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-icon">⚡</div>
-          <span>Large Electric Motor Testing</span>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-icon">📏</div>
-          <span>Measuring Backlash</span>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-icon">🏭</div>
-          <span>Complete Conveyor Drive</span>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-icon">🔄</div>
-          <span>KIS Tromel</span>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-icon">🌏</div>
-          <span>Largest CST in Australia</span>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-icon">💨</div>
-          <span>Large Fan — Weipa Ship Loader</span>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-icon">⛏️</div>
-          <span>Quarry Stacker Reclaimer</span>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-icon">🔒</div>
-          <span>Backstop Installation</span>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-icon">💧</div>
-          <span>Warman Pump Repaired</span>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-icon">🚛</div>
-          <span>Mobile Crushing Delivery</span>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-icon">🏋️</div>
-          <span>700kg Gearbox Handling</span>
-        </div>
-        <div class="gallery-item">
-          <div class="gallery-icon">🚀</div>
-          <span>Hot Shot Delivery</span>
+        <div class="gallery-dots">
+          <button class="gallery-dot active" data-slide="0"></button>
+          <button class="gallery-dot" data-slide="1"></button>
+          <button class="gallery-dot" data-slide="2"></button>
+          <button class="gallery-dot" data-slide="3"></button>
+          <button class="gallery-dot" data-slide="4"></button>
         </div>
       </div>
     </div>
@@ -320,7 +311,9 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="#" class="logo">Bearing<span>Tech</span></a>
+          <a href="#" class="logo">
+            <img src="images/logo.png" alt="BearingTech Logo" height="36">
+          </a>
           <p>Independent supplier of quality bearings — supported by expert technical advice and prompt personal service from the business owner.</p>
         </div>
         <div class="footer-links">
@@ -390,6 +383,28 @@
     document.querySelectorAll('.section, .service-card, .product-card, .gallery-item').forEach(el => {
       observer.observe(el);
     });
+
+    // Gallery carousel
+    const track = document.querySelector('.gallery-track');
+    const dots = document.querySelectorAll('.gallery-dot');
+    let currentSlide = 0;
+
+    function goToSlide(index) {
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+      currentSlide = index;
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        goToSlide(parseInt(dot.dataset.slide));
+      });
+    });
+
+    // Auto-advance every 5 seconds
+    setInterval(() => {
+      goToSlide((currentSlide + 1) % dots.length);
+    }, 5000);
   </script>
 </body>
 </html>
